@@ -26,6 +26,7 @@ export const Gallery = () => {
 
     const [itemImage,setItemImage] = useState(false);
     const [tempImgSrc,setTempImgSrc] = useState('');
+    const [liked,setLiked] = useState([]);
 
     const getImage =(imgsrc) => {
         setTempImgSrc(imgsrc);
@@ -38,6 +39,10 @@ export const Gallery = () => {
 
     const handleLikeButton =(id) => {
         console.log("Liked image");
+        const newLikedImages = [...liked];
+        newLikedImages[id-1] = !newLikedImages[id-1];
+        
+        setLiked(newLikedImages);
     }
 
     return (
@@ -46,9 +51,8 @@ export const Gallery = () => {
             <div className="grid-container">
                 {imageData.map((item,index) => (
                     <div className="pics" key={index} onClick={() => getImage(item.imgsrc)}>
-                        
                         <img src={item.imgsrc} alt={`Image ${item.id}`}  />
-                        <div className="like" onClick={(e) => {e.stopPropagation();
+                        <div className="like" style={{color: liked[item.id-1] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
                             handleLikeButton(item.id)}}>
                                 <ThumbUpAltIcon/>
                             </div>

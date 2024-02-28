@@ -10,7 +10,7 @@
 .pics {
     overflow: hidden;
     border-radius: 8px;
-    cursor: pointer; /* Add cursor pointer to indicate clickability */
+    cursor: pointer;
 }
 
 .pics img {

@@ -1,11 +1,11 @@
 import './App.css';
-import { AddPhoto } from './components/button/AddPhoto';
+import Modal from './components/button/modal/modal';
 import { Gallery } from './components/gallery/Gallery';
 
 function App() {
   return (
     <div className="App">
-      <AddPhoto/>
+      <Modal/>
       <Gallery/>
       
     </div>

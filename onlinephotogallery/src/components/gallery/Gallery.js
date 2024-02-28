@@ -38,13 +38,12 @@ export const Gallery = () => {
     }
 
     const handleLikeButton =(id) => {
-        console.log("Liked image");
+        console.log("Liked image!!!!");
         const newLikedImages = [...liked];
         newLikedImages[id-1] = !newLikedImages[id-1];
         
         setLiked(newLikedImages);
     }
-
     return (
         <>
         <div className="gallery-wrapper">

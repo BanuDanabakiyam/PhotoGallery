@@ -5,6 +5,7 @@ import image3 from '../image/image3.jpg';
 import image4 from '../image/image4.jpg';
 import '../gallery/Gallery.css'
 import CloseIcon from '@mui/icons-material/Close';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 
 export const Gallery = () => {
     let imageData = [
@@ -35,13 +36,23 @@ export const Gallery = () => {
         setItemImage(false);
     }
 
+    const handleLikeButton =(id) => {
+        console.log("Liked image");
+    }
+
     return (
         <>
         <div className="gallery-wrapper">
             <div className="grid-container">
                 {imageData.map((item,index) => (
                     <div className="pics" key={index} onClick={() => getImage(item.imgsrc)}>
+                        
                         <img src={item.imgsrc} alt={`Image ${item.id}`}  />
+                        <div className="like" onClick={(e) => {e.stopPropagation();
+                            handleLikeButton(item.id)}}>
+                                <ThumbUpAltIcon/>
+                            </div>
+                        
                     </div>
                 ))}
             </div>

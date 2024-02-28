@@ -14,6 +14,7 @@
 }
 
 .pics img {
+    position: relative;
     width: 100%;
     display: block;
     border-radius: 8px;
@@ -58,6 +59,13 @@
     .grid-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+.like{
+ position: absolute;
+ margin-top: -30px ;
+ padding-left: 10px;
+ margin-right: 350px;
+ color: white;
 }
 
 @media screen and (min-width: 1024px) {

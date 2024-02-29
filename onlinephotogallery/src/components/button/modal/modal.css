@@ -62,6 +62,12 @@
         color: rgb(46, 45, 45);
         font-weight: bold;
     }
+    @media screen and (max-width: 768px) {
+        .up-Btn{
+            margin-left: 75%;
+        }
+
+    }
 
   
   

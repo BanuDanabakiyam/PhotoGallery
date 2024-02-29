@@ -15,7 +15,7 @@ const db = mongoose.connect(url).then(() =>{
     console.log("Yes ! I am connected ")
 });
 
-app.get('/getUsers',(req,res) => {
+app.get('/getPhotos',(req,res) => {
     Users.find()
     .then(users => res.json(users))
     .catch(err => res.json(err));

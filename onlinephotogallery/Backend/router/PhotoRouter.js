@@ -1,7 +1,7 @@
 import express from "express";
 import User from "../model/User.js";
 export const router = express.Router();
-router.post("/users",async(req,res) => {
+router.post("/photos",async(req,res) => {
     try{
         console.log("Inside post");
         const {photographerName,photoURL,description} = req.body;

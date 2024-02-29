@@ -4,7 +4,7 @@ import axios from 'axios';
 import { AddPhoto } from "../AddPhoto";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Modal = () => {
+export const Modal = () => {
   const [modal, setModal] = useState(false);
   const [photographerName, setPhotographerName] = useState('');
   const [photoURL, setPhotoURL] = useState('');
@@ -16,8 +16,22 @@ const Modal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // try{
+    //   const response = await fetch(`http://localhost:8000`,{
+    //     method: 'post',
+    //     body: JSON.stringify({photographerName,photoURL,description}),
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //   });
+    //   const result = await response.json();
+    //   console.log(result);
+    // }catch(error){
+    //   console.log(error);
+    // }
     try {
-      const response = await axios.post('/users', {
+      console.log("Inside handleSubmit")
+      const response = await axios.post('http://localhost:8000/photos', {
         photographerName,
         photoURL,
         description,
@@ -25,6 +39,7 @@ const Modal = () => {
       });
       console.log(response.data);
       toggleModal();
+      inputClear();
     } catch (error) {
       console.error('Error:', error);
     }
@@ -41,9 +56,8 @@ const Modal = () => {
       <AddPhoto onClick={toggleModal}/>
       {modal && (
         <div className="modal">
-          {/* <div className="overlay" onClick={toggleModal}></div> */}
           <div className="modal-content">
-            <form onSubmit={handleSubmit}>
+            <form>
               <div>
                 <label className="modal-Label">Photographer Name</label>
                 <input type="text" value={photographerName} onChange={(e) => setPhotographerName(e.target.value)} />
@@ -57,7 +71,7 @@ const Modal = () => {
                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
               </div>
               <div>
-                <button className="up-Btn" type="submit" onClick={() => {toggleModal(); inputClear();}}>Upload</button>
+                <button className="up-Btn" type="submit" onClick={handleSubmit}>Upload</button>
               </div>
             </form>
             <CloseIcon className="close-modal" onClick={toggleModal} />
@@ -68,4 +82,3 @@ const Modal = () => {
   );
 };
 
-export default Modal;

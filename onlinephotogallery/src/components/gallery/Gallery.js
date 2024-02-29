@@ -55,7 +55,7 @@ export const Gallery = () => {
             setImageData(res.data);
     })
         .catch(err => console.log("Error: " ,err))
-    },[imageData])
+    },[])
 
     const getImage =(photoURL) => {
         setTempImgSrc(photoURL);

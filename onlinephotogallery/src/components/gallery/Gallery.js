@@ -62,6 +62,18 @@ export const Gallery = () => {
         
         setLiked(newLikedImages);
     }
+
+    // const saveImage = async(imageData) => {
+    //     try{
+    //         const response = await axios.post('/api/images',imageData);
+    //         console.log(response.data);
+    //     }catch(err){
+    //         console.log("cant save image")
+    //     }
+    // }
+    // const handleSaveToMongoDB = () => {
+
+    // }
     return (
         <>
         <div className="gallery-wrapper">
@@ -76,6 +88,7 @@ export const Gallery = () => {
                             <div className="photographer">{item.photographerName}</div>
 
                             <div className="description">{item.description}</div>
+
                         
                     </div>
                 ))}

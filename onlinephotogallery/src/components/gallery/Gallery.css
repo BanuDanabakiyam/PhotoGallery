@@ -12,6 +12,23 @@
     border-radius: 8px;
     cursor: pointer;
 }
+.pics img{
+    width: 100%;
+    object-fit: cover;
+}
+.description,
+.photographer {
+  color:black;
+  margin-top: 10px;
+}
+.description{
+    text-align: justify;
+    padding: 3%;
+}
+.photographer{
+    font-weight: bold;
+}
+
 
 .pics img {
     position: relative;

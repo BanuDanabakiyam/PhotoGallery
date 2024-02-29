@@ -1,5 +1,9 @@
+*{
+    margin: 0;
+}
 .gallery-wrapper {
     margin: 20px;
+    user-select: none;
 }
 
 .grid-container {

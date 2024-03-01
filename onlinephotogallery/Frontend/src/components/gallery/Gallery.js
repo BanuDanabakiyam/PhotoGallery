@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import axios from "axios";
 import { Filter } from "../filter/Filter";
+import { Sort } from "../sort/Sort";
 
 export const Gallery = () => {
     // let imageData = [
@@ -45,8 +46,11 @@ export const Gallery = () => {
     //     ];
     const [imageData,setImageData] = useState([]);  
     const [filteredImage,setFilteredImage] = useState([]); 
+    const [sortedImage,setSortedImage] = useState([]);
     const [itemImage,setItemImage] = useState(false);
     const [tempImgSrc,setTempImgSrc] = useState('');
+    const [filterActive,setFilterActive] = useState(true);
+    const [sortActive,setSortActive] = useState(false);
     const [liked,setLiked] = useState({});
 
     useEffect(() => {
@@ -63,6 +67,7 @@ export const Gallery = () => {
             });
             setLiked(initialLikedState);
             setFilteredImage(res.data);
+            setSortedImage(res.data);
     })
         .catch(err => console.log("Error: " ,err))
     },[])
@@ -76,10 +81,12 @@ export const Gallery = () => {
         setItemImage(false);
     }
 
+    
+
     const handleLikeButton =(id) => {
         console.log("Liked image!!!!");
         
-        setLiked(prevLike => {
+        setLiked((prevLike) => {
             console.log("Inside liked Status");
             const newLikedImages = {...prevLike};
             newLikedImages[id] = !newLikedImages[id];
@@ -95,11 +102,13 @@ export const Gallery = () => {
     }
 return (
         <>
-        
-        <Filter imageData = {imageData} setFilteredImage={setFilteredImage}  />
+
+        <Filter imageData = {imageData} setFilteredImage={setFilteredImage} setFilterActive={setFilterActive} setSortActive={setSortActive}/>
+        <Sort   imageData = {imageData} setSortedImage={setSortedImage}     setSortActive={setSortActive} setFilterActive={setFilterActive}/>
+
         <div className="gallery-wrapper">
             <div className="grid-container">
-                {filteredImage.map((item) => (
+                {filterActive && filteredImage.map((item) => (
                     <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
                         <img src={item.photoURL} alt={`Image ${item._id}`}  />
                         <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
@@ -111,7 +120,23 @@ return (
                             <div className="description">{item.description}</div>
              </div>
                 ))}
+
+                   {sortActive && sortedImage.map((item) => (
+                    <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
+                        <img src={item.photoURL} alt={`Image ${item._id}`}  />
+                        <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
+                            handleLikeButton(item._id)}}>
+                                <ThumbUpAltIcon/>
+                            </div>
+                            <div className="photographer">{item.photographerName}</div>
+
+                            <div className="description">{item.description}</div>
+             </div>
+                ))}
+                
             </div>
+
+            
             {
                 itemImage && (
                     <div className="modal">

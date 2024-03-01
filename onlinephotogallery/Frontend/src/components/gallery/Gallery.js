@@ -8,6 +8,7 @@ import '../gallery/Gallery.css'
 import CloseIcon from '@mui/icons-material/Close';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import axios from "axios";
+import { Filter } from "../filter/Filter";
 
 export const Gallery = () => {
     // let imageData = [
@@ -42,7 +43,8 @@ export const Gallery = () => {
     //         photographerName: 'John Paul'
     //       }
     //     ];
-    const [imageData,setImageData] = useState([]);   
+    const [imageData,setImageData] = useState([]);  
+    const [filteredImage,setFilteredImage] = useState([]); 
     const [itemImage,setItemImage] = useState(false);
     const [tempImgSrc,setTempImgSrc] = useState('');
     const [liked,setLiked] = useState({});
@@ -60,6 +62,7 @@ export const Gallery = () => {
                 initialLikedState[item._id] = item.isLiked;
             });
             setLiked(initialLikedState);
+            setFilteredImage(res.data);
     })
         .catch(err => console.log("Error: " ,err))
     },[])
@@ -92,9 +95,11 @@ export const Gallery = () => {
     }
 return (
         <>
+        
+        <Filter imageData = {imageData} setFilteredImage={setFilteredImage}  />
         <div className="gallery-wrapper">
             <div className="grid-container">
-                {imageData.map((item) => (
+                {filteredImage.map((item) => (
                     <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
                         <img src={item.photoURL} alt={`Image ${item._id}`}  />
                         <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
@@ -118,6 +123,8 @@ return (
                 )
             }
         </div>
+        
+
         </>
     );
 };

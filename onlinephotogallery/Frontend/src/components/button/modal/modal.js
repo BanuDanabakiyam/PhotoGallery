@@ -16,19 +16,6 @@ export const Modal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // try{
-    //   const response = await fetch(`http://localhost:8000`,{
-    //     method: 'post',
-    //     body: JSON.stringify({photographerName,photoURL,description}),
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //   });
-    //   const result = await response.json();
-    //   console.log(result);
-    // }catch(error){
-    //   console.log(error);
-    // }
     try {
       console.log("Inside handleSubmit")
       const response = await axios.post('http://localhost:8000/photos', {

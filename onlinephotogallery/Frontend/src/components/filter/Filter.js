@@ -1,22 +1,26 @@
 import React, { useState } from "react";
-import '../filter/Filter.css';
 import FilterListIcon from "@mui/icons-material/FilterList";
+
 import { IconButton, Menu, MenuItem, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 
 
-export const Filter = ({imageData,setFilteredImage}) => {
+export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive}) => {
     const [anchorEl, setAnchorEl] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('');
     
     
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        setFilterActive(true);
         setSelectedFilter('');
+        setSortActive(false);
 
     };
 
     const handleClose = () => {
+        setFilterActive(false);
         setAnchorEl('');
+        setSortActive(true);
 
     };
 
@@ -26,10 +30,10 @@ export const Filter = ({imageData,setFilteredImage}) => {
         setSelectedFilter(event.target.value);
         setAnchorEl(''); 
         let filteredData = [...imageData];
-        if(event.target.value == "All") {
+        if(event.target.value === "All") {
             console.log("All")
             filteredData = imageData;
-        }else if(event.target.value == "Name") {
+        }else if(event.target.value === "Name") {
             console.log("Name")
             filteredData.sort((a,b) => {
                 const upperNameA = a.photographerName.toUpperCase();
@@ -38,7 +42,7 @@ export const Filter = ({imageData,setFilteredImage}) => {
                 if(upperNameA > upperNameB) return 1;
                 return 0;
             })
-        } else if (event.target.value == "Liked") {
+        } else if (event.target.value === "Liked") {
             console.log("Liked")
             filteredData = imageData.filter(item => item.isLiked === true);
         } else if (event.target.value == "unLiked") {
@@ -53,6 +57,7 @@ export const Filter = ({imageData,setFilteredImage}) => {
         <>
             <IconButton onClick={handleClick} >
                 <FilterListIcon />
+                
             </IconButton>
             <Menu
                 anchorEl={anchorEl}

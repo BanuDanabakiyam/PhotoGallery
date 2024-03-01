@@ -45,7 +45,7 @@ export const Gallery = () => {
     const [imageData,setImageData] = useState([]);   
     const [itemImage,setItemImage] = useState(false);
     const [tempImgSrc,setTempImgSrc] = useState('');
-    const [liked,setLiked] = useState([]);
+    const [liked,setLiked] = useState({});
 
     useEffect(() => {
         console.log("Inside useEffect")
@@ -53,6 +53,13 @@ export const Gallery = () => {
         .then(res => {
             console.log(res.data);
             setImageData(res.data);
+
+            // isLiked reflect in UI based on DB
+            const initialLikedState ={};
+            res.data.forEach(item => {
+                initialLikedState[item._id] = item.isLiked;
+            });
+            setLiked(initialLikedState);
     })
         .catch(err => console.log("Error: " ,err))
     },[])
@@ -71,7 +78,7 @@ export const Gallery = () => {
         
         setLiked(prevLike => {
             console.log("Inside liked Status");
-            const newLikedImages = [...prevLike];
+            const newLikedImages = {...prevLike};
             newLikedImages[id] = !newLikedImages[id];
             axios.put(`http://localhost:8000/updateLikeStatus/${id}`,{
                 isLiked: newLikedImages[id]
@@ -87,11 +94,11 @@ return (
         <>
         <div className="gallery-wrapper">
             <div className="grid-container">
-                {imageData.map((item,index) => (
-                    <div className="pics" key={index} onClick={() => getImage(item.photoURL)}>
-                        <img src={item.photoURL} alt={`Image ${index + 1}`}  />
-                        <div className="like" style={{color: liked[index+1] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
-                            handleLikeButton(index+1)}}>
+                {imageData.map((item) => (
+                    <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
+                        <img src={item.photoURL} alt={`Image ${item._id}`}  />
+                        <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
+                            handleLikeButton(item._id)}}>
                                 <ThumbUpAltIcon/>
                             </div>
                             <div className="photographer">{item.photographerName}</div>

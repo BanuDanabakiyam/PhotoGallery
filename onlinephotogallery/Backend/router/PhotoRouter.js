@@ -25,7 +25,7 @@ router.put('/updateLikeStatus/:id',async(req,res) => {
     try{
         const id = req.params.id;
         const { isLiked } = req.body;
-        await User.findOneAndUpdate(id, { isLiked});
+        await User.findByIdAndUpdate(id, { isLiked});
         res.status(200).send("Like status update succesfully");
     }catch(error){
         res.status(500).json({ message: error.message });

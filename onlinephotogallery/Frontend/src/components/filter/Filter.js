@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
-
 import { IconButton, Menu, MenuItem, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 
 
@@ -14,7 +13,6 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
         setFilterActive(true);
         setSelectedFilter('');
         setSortActive(false);
-
     };
 
     const handleClose = () => {
@@ -45,7 +43,7 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
         } else if (event.target.value === "Liked") {
             console.log("Liked")
             filteredData = imageData.filter(item => item.isLiked === true);
-        } else if (event.target.value == "unLiked") {
+        } else if (event.target.value === "unLiked") {
             console.log("Unliked")
             filteredData = imageData.filter(item => item.isLiked === false);
         } 
@@ -57,7 +55,6 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
         <>
             <IconButton onClick={handleClick} >
                 <FilterListIcon />
-                
             </IconButton>
             <Menu
                 anchorEl={anchorEl}
@@ -79,7 +76,6 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
                     </MenuItem>
                 </RadioGroup>
             </Menu>
-            
-        </>
+         </>
     );
 };

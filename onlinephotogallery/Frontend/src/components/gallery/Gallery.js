@@ -81,8 +81,6 @@ export const Gallery = () => {
         setItemImage(false);
     }
 
-    
-
     const handleLikeButton =(id) => {
         console.log("Liked image!!!!");
         
@@ -102,15 +100,14 @@ export const Gallery = () => {
     }
 return (
         <>
-
         <Filter imageData = {imageData} setFilteredImage={setFilteredImage} setFilterActive={setFilterActive} setSortActive={setSortActive}/>
-        <Sort   imageData = {imageData} setSortedImage={setSortedImage}     setSortActive={setSortActive} setFilterActive={setFilterActive}/>
+        <Sort   imageData = {imageData} setSortedImage={setSortedImage}     setSortActive={setSortActive}     setFilterActive={setFilterActive}/>
 
         <div className="gallery-wrapper">
             <div className="grid-container">
                 {filterActive && filteredImage.map((item) => (
                     <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
-                        <img src={item.photoURL} alt={`Image ${item._id}`}  />
+                        <img src={item.photoURL} alt=""  />
                         <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
                             handleLikeButton(item._id)}}>
                                 <ThumbUpAltIcon/>
@@ -120,10 +117,9 @@ return (
                             <div className="description">{item.description}</div>
              </div>
                 ))}
-
-                   {sortActive && sortedImage.map((item) => (
+                  {sortActive && sortedImage.map((item) => (
                     <div className="pics" key={item._id} onClick={() => getImage(item.photoURL)}>
-                        <img src={item.photoURL} alt={`Image ${item._id}`}  />
+                        <img src={item.photoURL} alt=""  />
                         <div className="like" style={{color: liked[item._id] ? 'blue' : 'white'}} onClick={(e) => {e.stopPropagation();
                             handleLikeButton(item._id)}}>
                                 <ThumbUpAltIcon/>
@@ -135,21 +131,17 @@ return (
                 ))}
                 
             </div>
-
-            
-            {
+             {
                 itemImage && (
                     <div className="modal">
                         <span className="close" onClick={closeImage}>
                             <CloseIcon/>
                         </span>
-                        <img className="modal-content" src={tempImgSrc}></img>
+                        <img className="modal-content" alt="" src={tempImgSrc}></img>
                     </div>
                 )
             }
         </div>
-        
-
         </>
     );
 };

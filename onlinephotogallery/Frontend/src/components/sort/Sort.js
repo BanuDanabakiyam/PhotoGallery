@@ -30,7 +30,7 @@ export const Sort = ({imageData,setSortedImage,setSortActive,setFilterActive}) =
         let sortedData = [...imageData];
         if(event.target.value === "Time") {
             console.log("Time")
-            sortedData.sort((a,b) => new Date(b.createdTime) - new Date(a.createdTime));
+            sortedData.sort((a,b) => new Date(a.createdTime) - new Date(b.createdTime));
         }else if(event.target.value === "Name") {
             console.log("Name")
             sortedData.sort((a,b) => {

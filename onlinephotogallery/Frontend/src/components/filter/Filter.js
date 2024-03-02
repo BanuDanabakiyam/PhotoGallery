@@ -23,16 +23,13 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
     };
 
     const handleFilterChange = (event) => {
-        console.log("Before Filtered image ",imageData);
         console.log("Inside filter")
         setSelectedFilter(event.target.value);
         setAnchorEl(''); 
         let filteredData = [...imageData];
         if(event.target.value === "All") {
-            console.log("All")
             filteredData = imageData;
         }else if(event.target.value === "Name") {
-            console.log("Name")
             filteredData.sort((a,b) => {
                 const upperNameA = a.photographerName.toUpperCase();
                 const upperNameB= b.photographerName.toUpperCase();
@@ -41,13 +38,10 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
                 return 0;
             })
         } else if (event.target.value === "Liked") {
-            console.log("Liked")
             filteredData = imageData.filter(item => item.isLiked === true);
         } else if (event.target.value === "unLiked") {
-            console.log("Unliked")
             filteredData = imageData.filter(item => item.isLiked === false);
         } 
-        console.log("After Filtered Data : " , filteredData);
         setFilteredImage(filteredData);
     };
 

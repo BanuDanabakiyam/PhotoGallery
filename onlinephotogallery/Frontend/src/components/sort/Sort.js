@@ -56,11 +56,9 @@ export const Sort = ({imageData,setSortedImage,setSortActive,setFilterActive}) =
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
+                onClose={handleClose}>
                 <RadioGroup value={selectedSorting} onChange={handleSortingChange} >
-                
-                    <MenuItem>
+                <MenuItem>
                         <FormControlLabel value="Time" control={<Radio />} label="Time" />
                     </MenuItem>
                     <MenuItem>
@@ -69,10 +67,8 @@ export const Sort = ({imageData,setSortedImage,setSortActive,setFilterActive}) =
                     <MenuItem>
                         <FormControlLabel value="Favourite" control={<Radio />} label="Favourite" />
                     </MenuItem>
-                    
                 </RadioGroup>
             </Menu>
-            
         </>
     );
 }

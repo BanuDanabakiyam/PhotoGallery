@@ -54,10 +54,8 @@ export const Gallery = () => {
     const [liked,setLiked] = useState({});
 
     useEffect(() => {
-        console.log("Inside useEffect")
         axios.get('http://localhost:8000/getPhotos')
         .then(res => {
-            console.log(res.data);
             setImageData(res.data);
 
             // isLiked reflect in UI based on DB
@@ -82,10 +80,8 @@ export const Gallery = () => {
     }
 
     const handleLikeButton =(id) => {
-        console.log("Liked image!!!!");
         
         setLiked((prevLike) => {
-            console.log("Inside liked Status");
             const newLikedImages = {...prevLike};
             newLikedImages[id] = !newLikedImages[id];
             axios.put(`http://localhost:8000/updateLikeStatus/${id}`,{
@@ -93,7 +89,6 @@ export const Gallery = () => {
             })
             .then(res =>{ console.log(res.data);})
             .catch(err => {console.error(err)});
-            console.log("isLiked",newLikedImages[id]);
 
             return newLikedImages;
 });

@@ -23,16 +23,12 @@ export const Sort = ({imageData,setSortedImage,setSortActive,setFilterActive}) =
 
     };
     const handleSortingChange = (event) => {
-        console.log("Before sorted image ",imageData);
-        console.log("Inside sorting")
         setSelectedSorting(event.target.value);
         setAnchorEl(''); 
         let sortedData = [...imageData];
         if(event.target.value === "Time") {
-            console.log("Time")
             sortedData.sort((a,b) => new Date(a.createdTime) - new Date(b.createdTime));
         }else if(event.target.value === "Name") {
-            console.log("Name")
             sortedData.sort((a,b) => {
                 const upperNameA = a.photographerName.toUpperCase();
                 const upperNameB= b.photographerName.toUpperCase();
@@ -41,10 +37,8 @@ export const Sort = ({imageData,setSortedImage,setSortActive,setFilterActive}) =
                 return 0;
             })
         } else if (event.target.value === "Favourite") {
-            console.log("Liked")
             sortedData = imageData.filter(item => item.isLiked === true);
         } 
-        console.log("After SortedData : " , sortedData);
         setSortedImage(sortedData);
     }
 

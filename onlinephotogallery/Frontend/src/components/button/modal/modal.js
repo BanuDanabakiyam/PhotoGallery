@@ -17,14 +17,12 @@ export const Modal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("Inside handleSubmit")
-      const response = await axios.post('http://localhost:8000/photos', {
+        await axios.post('http://localhost:8000/photos', {
         photographerName,
         photoURL,
         description,
         isLiked: false
       });
-      console.log(response.data);
       toggleModal();
       inputClear();
     } catch (error) {

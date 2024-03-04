@@ -23,7 +23,6 @@ export const Filter = ({imageData,setFilteredImage,setFilterActive,setSortActive
     };
 
     const handleFilterChange = (event) => {
-        console.log("Inside filter")
         setSelectedFilter(event.target.value);
         setAnchorEl(''); 
         let filteredData = [...imageData];

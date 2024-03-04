@@ -3,7 +3,6 @@ import User from "../model/User.js";
 export const router = express.Router();
 router.post("/photos",async(req,res) => {
     try{
-        console.log("Inside post");
         const {photographerName,photoURL,description} = req.body;
         const newUser = new User({
             photographerName,
@@ -20,8 +19,6 @@ router.post("/photos",async(req,res) => {
 });
 
 router.put('/updateLikeStatus/:id',async(req,res) => {
-    console.log("inside put ",req.params.id);
-    console.log("Inside put ", req.body);
     try{
         const id = req.params.id;
         const { isLiked } = req.body;

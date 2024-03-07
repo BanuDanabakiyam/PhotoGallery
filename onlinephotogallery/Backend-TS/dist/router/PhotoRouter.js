@@ -29,8 +29,11 @@ exports.router.post("/photos", (req, res) => __awaiter(void 0, void 0, void 0, f
         const savedUser = yield newUser.save();
         res.status(201).json(savedUser);
     }
-    catch (err) {
-        res.status(500).json({ message: err.message });
+    catch (error) {
+        const err = {
+            message: "Internal server error",
+            status: 500
+        };
     }
 }));
 exports.router.put('/updateLikeStatus/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,8 +43,11 @@ exports.router.put('/updateLikeStatus/:id', (req, res) => __awaiter(void 0, void
         yield User_1.default.findByIdAndUpdate(id, { isLiked });
         res.status(200).send("Like status update successfully");
     }
-    catch (error) {
-        res.status(500).json({ message: error.message });
+    catch (err) {
+        const error = {
+            message: 'Internal server error',
+            status: 500
+        };
     }
 }));
 //# sourceMappingURL=PhotoRouter.js.map

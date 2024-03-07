@@ -8,3 +8,8 @@ Online photo gallery
 # For Backend
  -> npm i
  -> npm start
+
+#For Backend-TS(Typescript file)
+-> npm i
+-> npm start
+-> tsc (build)

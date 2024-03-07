@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "tsc -w",
-    "start": "node dist/server.js",
-    "dev": "nodemon dist/server.js",
-    "start2": "ts-node src/server.ts"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",

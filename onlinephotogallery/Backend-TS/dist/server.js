@@ -32,7 +32,10 @@ app.get('/getPhotos', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.json(users);
     }
     catch (err) {
-        res.status(500).json(err);
+        const error = {
+            message: 'Internal server error',
+            status: 500
+        };
     }
 }));
 app.listen(port, () => {
